@@ -6,7 +6,6 @@ using MIS.Core;
 using MIS.Core.InputModels;
 using Npgsql;
 using MIS.Core.Dtos;
-//Console.WriteLine(Environment.GetEnvironmentVariable("Игорь"));
 
 // DoctorRepository doc= new DoctorRepository();
 //Console.WriteLine(doc.AddDoctor(new DoctorDto() { FirstName = "Геннадий", LastName = "Букин" }));
