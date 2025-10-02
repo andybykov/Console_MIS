@@ -80,7 +80,6 @@ public static class TreatmentListQuery
              "PatientDoctorId" = @pdId
          WHERE "Id" = @id;
          """;
-
     
     public const string DeleteTreatmentList =
         $"""
@@ -141,4 +140,16 @@ public static class TreatmentListQuery
          WHERE pat."Id" = @patientId
          ORDER BY t."CurrentDate" DESC, t."Id";
          """;
+
+    /* Создать или проверить связь Patient - Doctor, верунть PatientDoctorId */
+    public const string CreatePatientDoctorId =
+        $"""
+        INSERT INTO {Pd} ("PatientId","DoctorId")
+        VALUES (@pId,@dId)
+        -- Если строка уже существует
+        -- вернет Id новой строки при вставке или Id существующей строки при конфликте
+        ON CONFLICT ("PatientId","DoctorId") DO UPDATE
+          SET "PatientId" = EXCLUDED."PatientId"
+        RETURNING "Id";        
+        """;
 }

@@ -1,14 +1,9 @@
 ﻿using MIS.Core.InputModels;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MIS.UI.Prompts
 {
-   public class PatientPrompt
+    public class PatientPrompt
     {
         public static PatientInputModel PromptPatientInput()
         {
@@ -26,7 +21,7 @@ namespace MIS.UI.Prompts
 
             var dep = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(dep))
-                p.DepartureDate = DateOnly.Parse(dep);           
+                p.DepartureDate = DateOnly.Parse(dep);
 
             return p;
         }

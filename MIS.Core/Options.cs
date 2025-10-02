@@ -14,7 +14,7 @@
                 if (cs == null)
                 {
                     throw new InvalidOperationException("Переменная среды ConnectionStringDB не задана или пуста");
-                }                  
+                }              
 
                 return cs;
             }

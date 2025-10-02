@@ -86,8 +86,8 @@ namespace MIS.DAL
                 {
                     list.Add(new DrugDto
                     {
-                        
-                        Id=reader.GetInt32(0),
+
+                        Id = reader.GetInt32(0),
                         Name = reader.GetString(1),
                         Dose = reader.GetDouble(2),
                         Units = reader.GetString(3),

@@ -23,7 +23,15 @@ using MIS.Core.Dtos;
 //new ProductRepository().AddProduct(new ProductDto() { Name = "БУБУБУ", Volume = 2 });
 
 TreatmentListRepository d = new TreatmentListRepository();
-d.GetAllTreatmentLists();
+var dto = new TreatmentListDto ();
+Console.WriteLine("Введите Id пациента:");
+int.TryParse(Console.ReadLine(), out int patId);
+Console.WriteLine("Введите Id врача:");
+int.TryParse(Console.ReadLine(), out int docId);
+dto.PatientId = patId;
+dto.DoctorId = docId;
+var PatientDoctorId = d.CreatePatientDoctorId (dto);
+Console.WriteLine(PatientDoctorId);
 
 
 

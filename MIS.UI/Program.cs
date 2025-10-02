@@ -1,17 +1,11 @@
-﻿using MIS.BLL;
-using MIS.Core.InputModels;
-using MIS.Core.OutputModels;
-using MIS.UI.Menus;
-using System;
-using System.Globalization;
-using System.Reflection;
+﻿using MIS.UI.Menus;
 
 namespace MIS.UI
 {
     internal static class Program
-    {         
+    {
         static void Main()
-        {          
+        {
             while (true)
             {
                 MainMenu.ShowMainMenu();
@@ -30,11 +24,5 @@ namespace MIS.UI
                 }
             }
         }
-               
-
-        
-
-        
-
     }
 }

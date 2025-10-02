@@ -5,7 +5,6 @@ using MIS.Core.Dtos;
 using MIS.Core.InputModels;
 using MIS.Core.OutputModels;
 using MIS.DAL;
-using System.Collections.Generic;
 
 namespace MIS.BLL
 {
@@ -56,10 +55,9 @@ namespace MIS.BLL
             return _mapper.Map<List<TreatmentListOutputModel>>(dtos);
         }
 
-        public void UpdateTreatmentList(int id, TreatmentListInputModel inputModel)
+        public void UpdateTreatmentList(TreatmentListInputModel inputModel)
         {
-            var dto = _mapper.Map<TreatmentListDto>(inputModel);
-            dto.Id = id;
+            var dto = _mapper.Map<TreatmentListDto>(inputModel);            
             _repository.UpdateTreatmentList(dto);
         }
 
@@ -67,6 +65,13 @@ namespace MIS.BLL
         {
             _repository.DeleteTreatmentListById(id);
         }
-        
+
+        public int CreatePatientDoctorId(TreatmentListInputModel inputModel)
+        {
+            var dto = _mapper.Map<TreatmentListDto>(inputModel);
+            //Console.WriteLine($"[BLL] PatientId = {dto.PatientId}, DoctorId = {dto.DoctorId}");
+            var res = _repository.CreatePatientDoctorId(dto);        
+            return res;
+        }       
     }
 }

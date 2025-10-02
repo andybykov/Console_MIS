@@ -1,5 +1,4 @@
 ﻿using MIS.Core.InputModels;
-using MIS.Core.OutputModels;
 
 
 namespace MIS.UI.Prompts
@@ -14,6 +13,6 @@ namespace MIS.UI.Prompts
             return p;
         }
 
-        
+
     }
 }

@@ -28,7 +28,7 @@ namespace MIS.DAL
 
                 return id;
             }
-        }   
+        }
 
 
         public DoctorDto GetDoctorById(int id)

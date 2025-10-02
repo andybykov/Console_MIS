@@ -18,7 +18,8 @@ namespace MIS.BLL
             _doctorRepository = new DoctorRepository();
 
             // Создаем MapperConfiguration и передаем DoctorMapperProfile
-            MapperConfiguration configuration = new MapperConfiguration((cfg => {
+            MapperConfiguration configuration = new MapperConfiguration((cfg =>
+            {
                 cfg.AddProfile(new DoctorMapperProfile());
             }), new LoggerFactory());
 
@@ -27,9 +28,9 @@ namespace MIS.BLL
 
         public void AddDoctor(DoctorInputModel doctor)
         {
-           var dto = _mapper.Map<DoctorDto>(doctor);
-           _doctorRepository.AddDoctor(dto);
-            
+            var dto = _mapper.Map<DoctorDto>(doctor);
+            _doctorRepository.AddDoctor(dto);
+
         }
 
         public DoctorOutputModel GetDoctorById(int id) //возвращаем OutputModel
@@ -52,10 +53,10 @@ namespace MIS.BLL
             var doctorDto = _doctorRepository.GetDoctorById(id);
             return _mapper.Map<DoctorOutputModel>(doctorDto);
         }
-       
+
         public List<DoctorOutputModel> GetAllDoctors()
         {
-            var doctorDto = _doctorRepository.GetAllDoctors();            
+            var doctorDto = _doctorRepository.GetAllDoctors();
 
             return _mapper.Map<List<DoctorOutputModel>>(doctorDto);
         }
@@ -68,7 +69,7 @@ namespace MIS.BLL
 
         public void DeleteDoctorById(int id)
         {
-            _doctorRepository.DeleteDoctorById(id); 
+            _doctorRepository.DeleteDoctorById(id);
 
         }
     }

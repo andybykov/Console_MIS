@@ -2,16 +2,13 @@
 using MIS.Core.Dtos;
 using MIS.DAL.Queries;
 using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Data;
 
 namespace MIS.DAL
 {
- 
+
     // Репозиторий для работы с таблицей листов назначений (Treatment_list) 
     public class TreatmentListRepository
-    {      
+    {
         // Создает новую запись листа назначения и возвращает его Id        
         public int AddTreatmentList(TreatmentListDto tlist)
         {
@@ -63,7 +60,7 @@ namespace MIS.DAL
             }
         }
 
-        
+
         // Возвращает список всех листов назначений        
         public List<TreatmentListDto> GetAllTreatmentLists()
         {
@@ -110,7 +107,7 @@ namespace MIS.DAL
 
                 using NpgsqlDataReader reader = command.ExecuteReader();
                 var list = new List<TreatmentListDto>();
-                
+
                 while (reader.Read())
                 {
                     list.Add(new TreatmentListDto
@@ -136,7 +133,7 @@ namespace MIS.DAL
             }
         }
 
-        
+
         // Возвращает все листы назначений по Id пациента
         public List<TreatmentListDto> GetAllTreatmentListsByPatientId(int patientId)
         {
@@ -148,7 +145,7 @@ namespace MIS.DAL
 
                 using NpgsqlDataReader reader = command.ExecuteReader();
                 var list = new List<TreatmentListDto>();
-                
+
                 while (reader.Read())
                 {
                     list.Add(new TreatmentListDto
@@ -174,7 +171,7 @@ namespace MIS.DAL
             }
         }
 
-        
+
         // Обновляет существующий лист назначения
         public void UpdateTreatmentList(TreatmentListDto tlist)
         {
@@ -194,7 +191,7 @@ namespace MIS.DAL
             }
         }
 
-        
+
         // Удаляет лист назначения по Id        
         public void DeleteTreatmentListById(int id)
         {
@@ -209,7 +206,23 @@ namespace MIS.DAL
                     throw new KeyNotFoundException($"Лист назначений с Id={id} не найден");
             }
         }
-        
+
+        // Создать или проверить связь Patient - Doctor, верунть PatientDoctorId 
+        public int CreatePatientDoctorId(TreatmentListDto dto)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(Options.ConnectionString))
+            {
+                connection.Open();
+                using NpgsqlCommand command = new NpgsqlCommand(TreatmentListQuery.CreatePatientDoctorId, connection);
+                command.Parameters.Add(new NpgsqlParameter("@pId", dto.PatientId));
+                command.Parameters.Add(new NpgsqlParameter("@dId", dto.DoctorId));
+
+                dto.PatientDoctorId = (int)command.ExecuteScalar()!;
+                return dto.PatientDoctorId;
+                
+            }
+        }
+
 
     }
 }
